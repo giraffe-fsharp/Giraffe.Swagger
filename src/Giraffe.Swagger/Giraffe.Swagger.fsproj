@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- General -->
+    <AssemblyName>Giraffe.Swagger</AssemblyName>
+    <Version>0.1.0-alpha-001</Version>
+    <Description>Swagger API documentation generator for Giraffe.</Description>
+    <Copyright>Copyright 2018 Flechner Romain and Dustin Moris Gorski</Copyright>
+    <Authors>Flechner Romain, Dustin Moris Gorski and contributors</Authors>
+    <NeutralLanguage>en-GB</NeutralLanguage>
+
+    <!-- Build settings -->
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <DebugType>portable</DebugType>
+    <OutputType>Library</OutputType>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <!-- NuGet settings -->
+    <PackageId>Giraffe.Swagger</PackageId>
+    <PackageTags>Giraffe;Swagger;API;Documentation;ASP.NET Core;FSharp;Functional</PackageTags>
+    <PackageReleaseNotes>https://raw.githubusercontent.com/giraffe-fsharp/giraffe.swagger/master/RELEASE_NOTES.md</PackageReleaseNotes>
+    <PackageIconUrl>https://raw.githubusercontent.com/giraffe-fsharp/giraffe.swagger/master/giraffe-64x64.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/giraffe-fsharp/giraffe.swagger</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/giraffe-fsharp/giraffe.swagger/master/LICENSE</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/giraffe-fsharp/giraffe.swagger</RepositoryUrl>
+
+    <!-- SourceLink settings -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <NoWarn>FS2003;FS0044</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Common.fs" />
+    <Compile Include="Analyzer.fs" />
+    <Compile Include="Generator.fs" />
+    <Compile Include="UI.fs" />
+    <Compile Include="Dsl.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FSharp.Quotations.Evaluator" Version="1.1.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.*" />
+    <PackageReference Include="Giraffe" Version="3.4.*" />
+    <PackageReference Include="TaskBuilder.fs" Version="2.1.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="swagger-ui.zip" />
+  </ItemGroup>
+</Project>
