@@ -35,8 +35,20 @@ module Dsl =
                             p.Value
                             |> Seq.collect (
                                 fun v ->
-                                    v.Value.Responses |> Seq.choose(fun r -> r.Value.Schema)
-                                    |> Seq.collect(fun d -> d.FlattenComplexDefinitions()))
+                                    let inputTypes =
+                                         v.Value.Parameters
+                                        |> List.choose(fun (r : ParamDefinition) -> r.Type)
+                                        |> List.choose(fun (r : PropertyDefinition) ->
+                                            match r with
+                                            | Ref objectDef -> Some objectDef
+                                            | _ -> None)
+                                        |> List.collect(fun d -> d.FlattenComplexDefinitions())
+                                    let outputTypes =
+                                        v.Value.Responses
+                                        |> Seq.choose(fun r -> r.Value.Schema)
+                                        |> Seq.collect(fun d -> d.FlattenComplexDefinitions())
+                                        |> Seq.toList
+                                    (inputTypes @ outputTypes))
                     )
                     |> Seq.toList
                     |> List.distinct
